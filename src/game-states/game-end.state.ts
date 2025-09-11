@@ -53,15 +53,13 @@ class GamerEndState implements SceneState {
       drawEngine.drawText('Congratulations!', 200, xCenter, 350, '#c56981');
       drawEngine.drawText('You saved your love', 60, xCenter, 550, '#a3a29a');
       drawEngine.drawText('Thank you for playing!', 60, xCenter, 620, '#a3a29a');
-      drawEngine.drawText('Press [Enter] or X to Return to the Main Menu', 50, xCenter, 750, '#a3a29a');
+      drawEngine.drawText('Press [Enter] or (A) to Return to the Main Menu', 50, xCenter, 750, '#a3a29a');
     
     } else if (typeof sessionStorage !== "undefined" && sessionStorage.getItem('gameOver')) {
 
       const xCenter = drawEngine.context.canvas.width / 2;
       drawEngine.drawText('Game Over', 200, xCenter, xCenter/2, '#c56981');
-      // drawEngine.drawText('You have been slain by the cursed dungeon', 50, xCenter, 550, '#545c7e');
-      // drawEngine.drawText('Better luck next time!', 50, xCenter, 600, '#545c7e');
-      drawEngine.drawText('Press [Enter] or X to Return to the Main Menu', 50, xCenter, 650, '#545c7e');
+      drawEngine.drawText('Press [Enter] or (A) to Return to the Main Menu', 50, xCenter, 650, '#545c7e');
     }
     this.updateControls();
   }

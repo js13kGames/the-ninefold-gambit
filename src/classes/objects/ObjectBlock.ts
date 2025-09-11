@@ -4,7 +4,8 @@ import { GameObject } from "../GameObject";
 import { Player } from "../player/Player";
 import { OBJECT_BLOCK } from "@/constans/game-contstans";
 import { images } from "../Images";
-import { Engine } from "@/core/engine";
+import { bossDieSFX } from "@/audio/sfx";
+import { zzfx } from "@/audio/zzfx";
 
 export class ObjectBlock extends GameObject {
   public health = 4;
@@ -31,7 +32,6 @@ export class ObjectBlock extends GameObject {
     hb.position.y = this.position.y;
     hb.width = s?s.width:16;
     hb.height = s?s.height:16;
-    Engine.debugBox(this.hitBox, 'red');
   }
 
   collidePlayer(){
@@ -68,7 +68,11 @@ export class ObjectBlock extends GameObject {
   playerHitBlock(){
     if(this.type!='wood'||!(this.player.isMeleeAttacking||this.player.isFiring)) return;
     if(this.checkCollision(this.player.attackBox)&&this.player.attackBox.active){
-      this.position.x=this.position.y=-Infinity;
+      this.position.x=this.position.y=-2000;
+
+      setTimeout(() => {
+      zzfx(...bossDieSFX)
+      }, 100);
     }
   }
 

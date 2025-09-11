@@ -5,12 +5,8 @@ import { Animations, PatrolPoints } from "@/model/common.model";
 import { Engine } from "@/core/engine";
 import { BlackCatEnemy } from "../BlackCatEnemy";
 
-const SHOOTING_RANGE = 30;
 
 export class BossCatEnemy extends BlackCatEnemy {
-  public phaseOneActive = false;
-  public phaseTwoActive = false;
-  public phaseThreeActive = false;
 
   public isActive = false;
 
@@ -51,46 +47,35 @@ export class BossCatEnemy extends BlackCatEnemy {
   private bossFightPhase(delta: number) {
     if (this.health > 10) {
       // Phase 1: Patrol + light shooting
-      this.phaseOneActive = true;
-      this.phaseTwoActive = false;
-      this.phaseThreeActive = false;
 
       this.moveSpeed = 60;
       this.enemyPatrol(this.patrolPoints.pointA, this.patrolPoints.pointB);
 
       if (Engine.collisions(this.player.hitBox, this.enemyAreaBox)) {
-        const distance = this.position.distance(this.player.position);
-        if (this.projectileArray.length <= 3 && distance > SHOOTING_RANGE) {
+        if (this.projectileArray.length <= 3) {
           this.shootToPlayer();
         }
       }
     } else if (this.health > 5) {
       // Phase 2: Aggressive shooting + chase
-      this.phaseTwoActive = true;
-      this.phaseOneActive = false;
-      this.phaseThreeActive = false;
 
       this.runSpeed = 30;
       this.playAnimation(ENEMY_ANIMATION_NAME.RUN);
 
       if (Engine.collisions(this.enemyAreaBox, this.player.hitBox)) {
-        const distance = this.position.distance(this.player.position);
-        if (this.projectileArray.length <= 6 && distance > SHOOTING_RANGE) {
+        if (this.projectileArray.length <= 6) {
           this.shootToPlayer();
         }
-        this.followPlayer();
+        this.followPlayer(true);
       }
     } else if (this.health > 0) {
       // Phase 3: Frenzied melee + chase
-      this.phaseThreeActive = true;
-      this.phaseOneActive = false;
-      this.phaseTwoActive = false;
 
       this.playAnimation(ENEMY_ANIMATION_NAME.RUN);
       this.runSpeed = 50;
 
       if (Engine.collisions(this.enemyAreaBox, this.player.hitBox)) {
-        this.followPlayer();
+        this.followPlayer(true);
         this.enemyCollidePlayer();
       }
     } else {

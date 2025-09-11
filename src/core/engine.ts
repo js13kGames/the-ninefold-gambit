@@ -57,6 +57,52 @@ export class Engine {
             objectA.position.y <= objectB.position.y + objectB.height);
     }
 
+    public static fadeIn(element: any, duration: number, onComplete?: () => void) {
+        let startTime: number | null = null;
+    
+        function animate(timestamp: number) {
+            if (!startTime) startTime = timestamp;
+    
+            const elapsed = timestamp - startTime;
+            const opacity = Math.min(1, elapsed / duration);
+    
+            element.style.opacity = opacity.toString();
+    
+            if (opacity < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                if (onComplete) {
+                    onComplete();
+                }
+            }
+        }
+    
+        requestAnimationFrame(animate);
+    }
+
+    public static fadeOut(element: any, duration: number, onComplete?: () => void) {
+        let startTime: number | null = null;
+
+        function animate(timestamp: number) {
+            if (!startTime) startTime = timestamp;
+
+            const elapsed = timestamp - startTime;
+            const opacity = 1 - Math.min(1, elapsed / duration);
+
+            element.style.opacity = opacity.toString();
+
+            if (opacity > 0) {
+                requestAnimationFrame(animate);
+            } else {
+                if (onComplete) {
+                    onComplete();
+                }
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+
     public static ticker(interval: number, repeat = true) {
         let tickerInterval = interval
         const obj = {

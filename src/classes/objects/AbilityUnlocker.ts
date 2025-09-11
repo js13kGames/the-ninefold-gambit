@@ -2,6 +2,8 @@ import { Vector2 } from "@/core/vector";
 import { GameObject } from "../GameObject";
 import { Player } from "../player/Player";
 import { images } from "../Images";
+import { zzfx } from "@/audio/zzfx";
+import { abilityUnlockSFX } from "@/audio/sfx";
 
 export class AbilityUnlocker extends GameObject {
   private ability: string;
@@ -25,7 +27,8 @@ export class AbilityUnlocker extends GameObject {
     if(!this.checkCollision(p.hitBox) || !p.hitBox.active) return;
     if(p.fsm.isLocked(this.ability)){
       p.fsm.unlockState(this.ability);
-      this.position.x = this.position.y = -Infinity;
+      zzfx(...abilityUnlockSFX)
+      this.position.x = this.position.y = -200000;
     }
   }
 

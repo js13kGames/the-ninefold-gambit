@@ -101,8 +101,8 @@ class Controls {
     this.isConfirm = !!(this.keyMap['Enter'] || b(XboxControllerButton.A) || b(XboxControllerButton.Start));
     this.isEscape = !!(this.keyMap['Escape'] || b(XboxControllerButton.Select));
     this.isAttack = !!(this.keyMap['Space'] || this.keyMap['KeyJ'] || this.keyMap['Numpad2'] || b(XboxControllerButton.A) || (this.isMobile && this.isTouchAttack));
-    this.isDash = !!(this.keyMap['ShiftLeft'] || this.keyMap['Numpad0'] || b(XboxControllerButton.B) || (this.isMobile && this.isTouchDash));
-    this.isFire = !!(this.keyMap['KeyF'] || this.keyMap['ShiftRight'] || b(XboxControllerButton.X) || (this.isMobile && this.isTouchFire));
+    this.isDash = !!(this.keyMap['ShiftLeft'] || this.keyMap['KeyK'] || b(XboxControllerButton.B) || (this.isMobile && this.isTouchDash));
+    this.isFire = !!(this.keyMap['KeyL'] || this.keyMap['ShiftRight'] || b(XboxControllerButton.X) || (this.isMobile && this.isTouchFire));
   }
 
   setupMobileControls() {
@@ -194,9 +194,9 @@ class Controls {
       document.body.appendChild(btn);
     };
 
-    makeBtn('btn-attack', 'X', 120, 100, v => this.isTouchAttack = v);
-    makeBtn('btn-dash', 'Y', 40, 100, v => this.isTouchDash = v);
-    makeBtn('btn-fire', 'A', 40, 175, v => this.isTouchFire = v);
+    makeBtn('btn-attack', 'A', 120, 60, v => this.isTouchAttack = v);
+    makeBtn('btn-dash', 'B', 40, 70, v => this.isTouchDash = v);
+    makeBtn('btn-fire', 'X', 40, 145, v => this.isTouchFire = v);
   }
 }
 

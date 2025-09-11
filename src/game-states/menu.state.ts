@@ -62,24 +62,12 @@ export class MenuState implements SceneState {
       document.addEventListener('keydown', () => {
         if (this.isPressedAnyKey) return;
         this.unlockGame(unlocked)
-        // if (!unlocked) {
-        //   this.startBGM();
-        //   unlocked = true;
-        //   this.isMusicOn = true;
-        //   this.isPressedAnyKey = true;
-        // }
       });
     } else {
       this.gameStartText = 'Touch to start'
       document.addEventListener('touchend', () => {
         if (this.isPressedAnyKey) return;
         this.unlockGame(unlocked)
-        // if (!unlocked) {
-        //   this.startBGM();
-        //   unlocked = true;
-        //   this.isMusicOn = true;
-        //   this.isPressedAnyKey = true;
-        // }
       });
     }
 
@@ -111,6 +99,7 @@ export class MenuState implements SceneState {
 
       // this.isPressedAnyKey = false;
       drawEngine.drawText('The Ninefold Gambit', 200, xCenter, 350, '#c56981', "center");
+      drawEngine.drawText('© 2025 Himanshu Bisht', 50, xCenter, 1010, '#a3a29a', "center");
 
       const buttonWidth = 300;
       const buttonHeight = 80;
@@ -126,6 +115,7 @@ export class MenuState implements SceneState {
         const y = startY + index * (buttonHeight + buttonSpacing);
         this.drawButton(xCenter - buttonWidth / 2, y, buttonWidth, buttonHeight, button.label, index === this.selectedIndex);
       });
+
 
     }
 

@@ -78,7 +78,7 @@ export class GameManager {
 
     public particalSystem!: ParticleSystem;
 
-    private timeOutDuration: number = 1000;
+    private timeOutDuration: number = 2000;
     private timOutElapsed: number = 0;
 
     private canBossActive = false;
@@ -113,7 +113,7 @@ export class GameManager {
 
         this.woodBlocksArray.push(
             new ObjectBlock(new Vector2(136, 160), '', this.player, OBJECT_BLOCK.WOOD),
-            new ObjectBlock(new Vector2(152, 168), '', this.player, OBJECT_BLOCK.WOOD),
+            new ObjectBlock(new Vector2(172, 168), '', this.player, OBJECT_BLOCK.WOOD),
             new ObjectBlock(new Vector2(288, 168), '', this.player, OBJECT_BLOCK.WOOD),
             new ObjectBlock(new Vector2(304, 168), '', this.player, OBJECT_BLOCK.WOOD),
             new ObjectBlock(new Vector2(352, 112), '', this.player, OBJECT_BLOCK.WOOD),
@@ -121,31 +121,9 @@ export class GameManager {
 
 
             new ObjectBlock(new Vector2(36, 76), '', this.player, OBJECT_BLOCK.WOOD),
-            // new ObjectBlock(new Vector2(281, 290), '', this.player, OBJECT_BLOCK.WOOD),
-            // new ObjectBlock(new Vector2(392, 272), '', this.player, OBJECT_BLOCK.WOOD),
-            // new ObjectBlock(new Vector2(393, 290), '', this.player, OBJECT_BLOCK.WOOD),
-
-            // new ObjectBlock(new Vector2(272, 136), '', this.player, OBJECT_BLOCK.WOOD),
-            // new ObjectBlock(new Vector2(274, 153), '', this.player, OBJECT_BLOCK.WOOD),
-            // new ObjectBlock(new Vector2(272, 169), '', this.player, OBJECT_BLOCK.WOOD),
-            // new ObjectBlock(new Vector2(270, 185), '', this.player, OBJECT_BLOCK.WOOD),
-            // new ObjectBlock(new Vector2(272, 201), '', this.player, OBJECT_BLOCK.WOOD),
-
-
-
-            // new ObjectBlock(new Vector2(56, 168), '', this.player, OBJECT_BLOCK.WOOD),
-            // new ObjectBlock(new Vector2(72, 167), '', this.player, OBJECT_BLOCK.WOOD),
-
-            // new ObjectBlock(new Vector2(64, 120), '', this.player, OBJECT_BLOCK.WOOD),
-            // new ObjectBlock(new Vector2(72, 167), '', this.player, OBJECT_BLOCK.WOOD),
-
-            // new ObjectBlock(new Vector2(176, 48), '', this.player, OBJECT_BLOCK.WOOD),
-            // new ObjectBlock(new Vector2(200, 64), '', this.player, OBJECT_BLOCK.WOOD),
         );
 
         this.stoneBlocksArray.push(
-            // new ObjectBlock(new Vector2(528, 152), '', this.player, OBJECT_BLOCK.STONE),
-            // new ObjectBlock(new Vector2(545, 154), '', this.player, OBJECT_BLOCK.STONE),
             new ObjectBlock(new Vector2(184, 80), '', this.player, OBJECT_BLOCK.STONE),
             new ObjectBlock(new Vector2(168, 88), '', this.player, OBJECT_BLOCK.STONE),
             new ObjectBlock(new Vector2(105, 96), '', this.player, OBJECT_BLOCK.STONE),
@@ -153,56 +131,19 @@ export class GameManager {
 
             new ObjectBlock(new Vector2(90, 28), '', this.player, OBJECT_BLOCK.STONE),
 
-            // new ObjectBlock(new Vector2(64, 64), '', this.player, OBJECT_BLOCK.STONE),
-
 
         );
 
         this.wallBlocksArray.push(
-            // new ObjectBlock(new Vector2(312, 88), '', this.player, OBJECT_BLOCK.BLOCK_TILE, new Box(new Vector2(), 8, 8, true)),
-            // new ObjectBlock(new Vector2(320, 88), '', this.player, OBJECT_BLOCK.BLOCK_TILE, new Box(new Vector2(), 8, 8, true)),
-            // new ObjectBlock(new Vector2(328, 88), '', this.player, OBJECT_BLOCK.BLOCK_TILE, new Box(new Vector2(), 8, 8, true)),
-            // new ObjectBlock(new Vector2(336, 88), '', this.player, OBJECT_BLOCK.BLOCK_TILE, new Box(new Vector2(), 8, 8, true)),
-
             new ObjectBlock(new Vector2(312, 94), '', this.player, OBJECT_BLOCK.BLOCK_TILE, new Box(new Vector2(), 8, 8, true)),
             new ObjectBlock(new Vector2(320, 96), '', this.player, OBJECT_BLOCK.BLOCK_TILE, new Box(new Vector2(), 8, 8, true)),
             new ObjectBlock(new Vector2(328, 94), '', this.player, OBJECT_BLOCK.BLOCK_TILE, new Box(new Vector2(), 8, 8, true)),
             new ObjectBlock(new Vector2(336, 96), '', this.player, OBJECT_BLOCK.BLOCK_TILE, new Box(new Vector2(), 8, 8, true)),
         )
 
-        // const stoneBlock = new ObjectBlock(new Vector2(200, 304), '', this.player, 'wood');
-        // const stoneBlock2 = new ObjectBlock(new Vector2(456, 280), '', this.player, 'wood');
-        // const stoneBlock3 = new ObjectBlock(new Vector2(485, 280), '', this.player, 'wood');
-
-        // const stoneBlock4 = new ObjectBlock(new Vector2(528, 152), '', this.player, 'stone');
-        // const stoneBlock5 = new ObjectBlock(new Vector2(545, 154), '', this.player, 'stone');
-        // this.stoneBlocksArray = [stoneBlock, stoneBlock2, stoneBlock3, stoneBlock4, stoneBlock5];
-
         this.bossCat = new BossCatEnemy(new Vector2(300, 0), 'boss_cat_run.png', this.player, this.bossCatAnimations, true);
-        this.bossCatArray = [this.bossCat];
-        // this.whiteCatEnemy = new WhiteCatEnemy(new Vector2(450, 20), this.whiteCatSprite, this.player, this.whiteCatEnemiesAnimations, true);
-        // this.whiteCatEnemies = [this.whiteCatEnemy]; (352, 312)
-        // this.whiteCatEnemies.push(
-        //     // new WhiteCatEnemy(new Vector2(352, 302), this.whiteCatSprite, this.player, this.whiteCatEnemiesAnimations,
-        //     //     new PatrolPoints(new Vector2(288, 302), new Vector2(416, 302)), true),
-        //     //     new WhiteCatEnemy(new Vector2(348, 240), this.whiteCatSprite, this.player, this.whiteCatEnemiesAnimations,
-        //     //     new PatrolPoints(new Vector2(284, 240), new Vector2(416, 240)), true),
-        //     new WhiteCatEnemy(new Vector2(352, 302), this.whiteCatSprite, this.player, this.whiteCatEnemiesAnimations,
-        //         PatrolDirection.Horizontal, 64, true),
-        //     new WhiteCatEnemy(new Vector2(348, 240), this.whiteCatSprite, this.player, this.whiteCatEnemiesAnimations,
-        //         PatrolDirection.Horizontal, 64, true),
-        //     new WhiteCatEnemy(new Vector2(362, 170), this.whiteCatSprite, this.player, this.whiteCatEnemiesAnimations,
-        //         PatrolDirection.Horizontal, 64, true),
-        //     new WhiteCatEnemy(new Vector2(325, 135), this.whiteCatSprite, this.player, this.whiteCatEnemiesAnimations,
-        //         PatrolDirection.Horizontal, 25, true),
-        //     new WhiteCatEnemy(new Vector2(530, 157), this.whiteCatSprite, this.player, this.whiteCatEnemiesAnimations,
-        //         PatrolDirection.Horizontal, 25, true),
-        //     new WhiteCatEnemy(new Vector2(530, 204), this.whiteCatSprite, this.player, this.whiteCatEnemiesAnimations,
-        //         PatrolDirection.Horizontal, 30, true),
-        // )
+        this.bossCatArray = [this.bossCat]
 
-        // this.blackCatEnemy = new BlackCatEnemy(new Vector2(20, 545), 'black_cat_run.png', this.player, this.blackCatEnemiesAnimations, true);
-        // this.blackCatEnemies = [this.blackCatEnemy];
         this.blackCatEnemies.push(
             new BlackCatEnemy(new Vector2(217, 140), this.blackCatSprite, this.player, this.blackCatEnemiesAnimations,
                 PatrolDirection.Horizontal, 35, true),
@@ -215,35 +156,27 @@ export class GameManager {
             new BlackCatEnemy(new Vector2(-5, 55), this.blackCatSprite, this.player, this.blackCatEnemiesAnimations,
                 PatrolDirection.Horizontal, 10, true),
             new BlackCatEnemy(new Vector2(54, 0), this.blackCatSprite, this.player, this.blackCatEnemiesAnimations,
-                PatrolDirection.Vertical, 30, true),
-            new BlackCatEnemy(new Vector2(180, 25), this.blackCatSprite, this.player, this.blackCatEnemiesAnimations,
-                PatrolDirection.Horizontal, 30, true),
-            new BlackCatEnemy(new Vector2(163, -5), this.blackCatSprite, this.player, this.blackCatEnemiesAnimations,
-                PatrolDirection.Horizontal, 30, true),
-
+                PatrolDirection.Vertical, 20, true),
+            new BlackCatEnemy(new Vector2(190, 15), this.blackCatSprite, this.player, this.blackCatEnemiesAnimations,
+                PatrolDirection.Horizontal, 20, true),
+            new BlackCatEnemy(new Vector2(188, -5), this.blackCatSprite, this.player, this.blackCatEnemiesAnimations,
+                PatrolDirection.Horizontal, 22, true)
         )
-
-        // this.blobBlock = new BlobBlock(new Vector2(20, 640), 'blob.png', this.player, this.blobBlockAnimations, true);
-        // const blobBlock = new BlobBlock(new Vector2(36, 640), 'blob.png', this.player, this.blobBlockAnimations, true);
-        // this.blobBlocksArray = [this.blobBlock, blobBlock];
-
-        // this.abilityUnlockerPunch = new AbilityUnlocker(new Vector2(178, 279), '', this.player, UNLOCKABLE_ABILITY.PUNCH_ABILITY);
-        // this.abilityUnlockerDigDash = new AbilityUnlocker(new Vector2(542, 316), '', this.player, UNLOCKABLE_ABILITY.DIG_DASH);
-        // this.abilityUnlockerFire = new AbilityUnlocker(new Vector2(364, 51), '', this.player, UNLOCKABLE_ABILITY.FIRE_ABILITY);
+        
         this.abilityUnlockersArray.push(
             new AbilityUnlocker(new Vector2(115, 125), '', this.player, UNLOCKABLE_ABILITY.PUNCH_ABILITY),
-            new AbilityUnlocker(new Vector2(352, 164), '', this.player, UNLOCKABLE_ABILITY.DIG_DASH),
+            new AbilityUnlocker(new Vector2(372, 166), '', this.player, UNLOCKABLE_ABILITY.DIG_DASH),
             new AbilityUnlocker(new Vector2(15, 12), '', this.player, UNLOCKABLE_ABILITY.FIRE_ABILITY)
         )
 
         this.dialogTriggers.push(
-            new DialogTrigger(new Vector2(115, 125), 16, 16, "You have unlocked the Punch ability! Press 'Space' or 'X' to punch."),
-            new DialogTrigger(new Vector2(352, 164), 16, 16, "You have unlocked the Dig Dash ability! Press 'Left Shift' or 'Y' to dash."),
-            new DialogTrigger(new Vector2(15, 12), 16, 16, "You have unlocked the Fire Ball ability! Press 'F' or 'A' to fire."),
+            new DialogTrigger(new Vector2(115, 125), 16, 16, "You have unlocked the Punch ability! Press '[Space],[J]' or '(A)' to punch."),
+            new DialogTrigger(new Vector2(372, 166), 16, 16, "You have unlocked the Dig Dash ability! Press '[L Shift],[K]' or '(B)' to dash."),
+            new DialogTrigger(new Vector2(15, 12), 16, 16, "You have unlocked the Fire Ball ability! Press '[R Shift],[L]' or '(X)' to fire."),
 
-            new DialogTrigger(new Vector2(320, 96), 16, 16, "No! this path is blocked."),
-            new DialogTrigger(new Vector2(320, 62), 16, 16, "Haha you find me! Now you have to defeat me to save your love!"),
-            new DialogTrigger(new Vector2(61, 156), 16, 48, "Come here I can help you."),
+            new DialogTrigger(new Vector2(320, 92), 16, 16, "No! this path is blocked."),
+            new DialogTrigger(new Vector2(310, 69), 32, 16, "Haha you find me! Now you have to defeat me to save your love!"),
+            new DialogTrigger(new Vector2(61, 120), 16, 128, "Come here I can help you."),
             new DialogTrigger(new Vector2(84, 174), 16, 32, "This way behind me is a secret path, go!"),
         );
 
@@ -258,21 +191,7 @@ export class GameManager {
         this.particalSystem.updateAndDraw(delta);
 
         // Old mouse sprite draw
-        images.getOldMouseSprite(new Vector2(75, 150));
-
-        // this.levelCollection[0].update(delta);
-
-        // drawEngine.context.save();
-        // drawEngine.context.globalCompositeOperation = 'destination-in';
-        // drawEngine.context.fillStyle = 'rgba(0, 0, 0, 1)';
-        // drawEngine.context.fillRect(9, 255, 215, 100); // <-- this should cut a hole
-        // drawEngine.context.restore();
-
-
-        // this.blobBlocksArray.forEach((blob: BlobBlock) => {
-        //     blob.update(delta);
-        //     blob.collideWithOthers(this.blobBlocksArray);
-        // })
+        images.getOldMouseSprite(new Vector2(75, 150))
 
         this.bossCatArray.forEach((bossCat: BossCatEnemy) => {
             bossCat.isActive = this.canBossActive;
@@ -289,16 +208,15 @@ export class GameManager {
             }
             this.particalSystem.resetBurst();
 
-        });
+        })
 
         this.woodBlocksArray.forEach((wood: ObjectBlock) => {
             wood.update(delta);
-        });
+        })
 
         this.stoneBlocksArray.forEach((stone: ObjectBlock) => {
             stone.update(delta);
-            // stone.collideWithOthers(this.stoneBlocksArray);
-        });
+        })
 
         if (this.blackCatEnemies?.length > 0) {
             this.wallBlocksArray.forEach((wall: ObjectBlock) => {
@@ -310,33 +228,17 @@ export class GameManager {
             }
             if (this.canBossActive) {
                 this.wallBlocksArray.forEach((wall: ObjectBlock) => {
-                    wall.update(delta);
+                    wall.update(delta)
                 });
             }
         }
 
         this.abilityUnlockersArray.forEach((unlocker: AbilityUnlocker) => {
-            unlocker.update(delta);
+            unlocker.update(delta)
             unlocker.collidePlayer();
-        });
+        })
 
-        this.player.update(delta);
-        // this.whiteCatEnemy.updateAndDraw(delta);
-
-
-
-
-        // this.whiteCatEnemies.forEach((whiteCat: WhiteCatEnemy, index: number) => {
-        //     whiteCat.updateAndDraw(delta);
-        //     whiteCat.name = 'enemy_wcat_' + (index + 1);
-        //     const attackedEnemy = this.player.attackEnemy(whiteCat, index, this.whiteCatEnemies);
-        //     if (attackedEnemy instanceof WhiteCatEnemy) {
-        //         attackedEnemy.position.x = attackedEnemy.hitBox.position.x + (this.player.directionVector.x > 0 ? 1 : -1);;
-        //         attackedEnemy.position.y = attackedEnemy.hitBox.position.y + attackedEnemy.hitBox.height / 2;
-        //         this.particalSystem.burst(attackedEnemy.position, 50, '#a3a29a');
-        //     }
-        //     this.particalSystem.resetBurst();
-        // });
+        this.player.update(delta)
 
         this.blackCatEnemies.forEach((blackCat: BlackCatEnemy, index: number) => {
             blackCat.updateAndDraw(delta);
@@ -378,15 +280,14 @@ export class GameManager {
         if (this.bossCatArray?.length === 0) {
             sessionStorage.setItem('gameWin', 'true');
             sessionStorage.removeItem('gameOver');
+            this.player.canControlPlayer = false;
             this.timOutElapsed += delta;
             if (this.timOutElapsed >= this.timeOutDuration) {
                 gameStateMachine.setState(gamerEndState);
             }
         }
 
-
     }
-
 
     private renderDialogBoxAndHUD(delta: number) {
         if (this.dialogBox.isActive) {
@@ -423,18 +324,10 @@ export class GameManager {
             this.dialogBox.onKeyPress();
             this.player.canControlPlayer = true;
 
-            // this.dialogActiveElapsed += delta;
-            // if (this.dialogActiveElapsed <= this.dialogActiveDuration) {
-            // }
             setTimeout(() => {
                 this.player.isDialogActive = false;
             }, 500);
         }
-
-        // window.addEventListener('keydown', () => {
-        //     this.dialogBox.onKeyPress();
-        //     this.player.canControlPlayer = true;
-        // });
     }
 
     private showPlayerLifeHearts() {

@@ -4,7 +4,7 @@ import { Vector2 } from "@/core/vector"
 import { attackSFX } from "@/audio/sfx"
 import { zzfx } from "@/audio/zzfx"
 import { time } from "@/core/time"
-import { Direction } from "@/constans/game-contstans"
+import { Direction, SOUND_FX } from "@/constans/game-contstans"
 
 export class PlayerMeleeState extends State<Player> {
   private spd = 50

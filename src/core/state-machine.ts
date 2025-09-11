@@ -14,7 +14,7 @@ export class StateMachine<T> {
   changeState(name: string): void {
     if (this.isLocked(name)) {
       // Optional: Log or ignore
-      console.warn(`State "${name}" is currently locked and cannot be activated.`);
+      // console.warn(`State "${name}" is currently locked and cannot be activated.`);
       return;
     }
 

@@ -1,4 +1,3 @@
-import { DEBUGGER } from "@/constans/game-contstans";
 import { GameObject } from "./GameObject";
 import { Player } from "./player/Player";
 import { PlayerHUD } from "./player/PlayerHUD";
@@ -50,9 +49,5 @@ export class HealthUpgrade extends GameObject {
         this.hitBox.position.y = this.position.y;
         this.hitBox.width = 12;
         this.hitBox.height = 12;
-
-        if (DEBUGGER) {
-            Engine.debugBox(this.hitBox, 'red');
-        }
     }
 }

@@ -1,5 +1,5 @@
 import { Engine } from '../../core/engine'
-import { Direction, PLAYER_SPEED, UNLOCKABLE_ABILITY } from "@/constans/game-contstans"
+import { Direction, ENEMY_TYPE, PLAYER_SPEED, SOUND_FX, UNLOCKABLE_ABILITY } from "@/constans/game-contstans"
 import { controls } from "@/core/controls"
 import { CollisionBlock } from "../CollisionBlock"
 import { Animations, Box } from '@/model/common.model'
@@ -15,6 +15,8 @@ import { PlayerDigdashState } from './player-digdash-state'
 import { PlayerMeleeState } from './player-melee-state'
 import { PlayerHUD } from './PlayerHUD'
 import { ParticleSystem } from '@/core/particle-system'
+import { bossDieSFX, catDieSFX, playerDieSFX, playerHitSFX } from '@/audio/sfx'
+import { zzfx } from '@/audio/zzfx'
 
 const HBW = 10, HBH = 14, HBX = 27, HBY = 28
 
@@ -143,8 +145,10 @@ export class Player extends Sprite {
     this.updateHitBox(); this.updateAttackBox()
     this.checkForVerticalCollision(this.collisionBlocks, pos, this.hitBox, v)
 
-    this.hitBox.active ? Engine.debugBox(this.hitBox, 'green') : Engine.debugBox(this.hitBox, 'gray');
-    Engine.debugBox(this.attackBox, '#c65197');
+    // if (DEBUGGER) { 
+    //   this.hitBox.active ? Engine.debugBox(this.hitBox, 'green') : Engine.debugBox(this.hitBox, 'gray');
+    //   Engine.debugBox(this.attackBox, '#c65197');
+    // }
   }
 
   controls() {
@@ -164,7 +168,8 @@ export class Player extends Sprite {
   }
 
   takeDamage(a: number) {
-    if (!this.isInvincible) {
+    if (!this.isInvincible && this.isAlive) {
+      zzfx(...playerHitSFX)
       this.health -= a
       this.isInvincible = true
       this.lastHitTime = 0
@@ -174,8 +179,16 @@ export class Player extends Sprite {
   playerDied() {
     if (!this.isAlive) {
       this.velocity.x = this.velocity.y = 0
+      this.canControlPlayer = false
       this.isInvincible = false
-      if (!this.isPlayingPlayerDie) this.isPlayingPlayerDie = true
+      if (!this.isPlayingPlayerDie) {
+        zzfx(...playerDieSFX)
+        this.isPlayingPlayerDie = true;
+      } 
+      this.particalSystem.burst(new Vector2(this.hitBox.position.x + this.hitBox.width / 2, this.hitBox.position.y + this.hitBox.height / 2), 60, '#c56981');
+      setTimeout(() => {
+        this.particalSystem.resetBurst();
+      }, 1000);
     }
   }
 
@@ -206,6 +219,12 @@ export class Player extends Sprite {
           this.collidedWith = '';
           enemiesArray.splice(index, 1);
           this.isEnemyCollided = false;
+
+          if (enemy.enemyType === ENEMY_TYPE.BLACK_CAT) {
+            if (SOUND_FX) zzfx(...catDieSFX)
+          } else if (enemy.enemyType === ENEMY_TYPE.BOSS_CAT) {
+            if (SOUND_FX) zzfx(...bossDieSFX)
+          }
         }
       }
       // if (attackedEnemy.health == 0) {

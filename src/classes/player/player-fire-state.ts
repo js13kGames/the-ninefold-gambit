@@ -3,7 +3,7 @@ import { Player } from "./Player"
 import { controls } from "@/core/controls"
 import { Projectile } from "../Projectile"
 import { Vector2 } from "@/core/vector"
-import { attackSFX } from "@/audio/sfx"
+import { fireballSFX } from "@/audio/sfx"
 import { zzfx } from "@/audio/zzfx"
 import { ProjectileType } from "@/constans/game-contstans"
 
@@ -24,7 +24,6 @@ export class PlayerFireState extends State<Player> {
     if (c.isFire && !p.isPunching) {
       if (p.projectileArray?.length > 0) return
       this.fire()
-      zzfx(...attackSFX)
     }
   }
 
@@ -37,6 +36,7 @@ export class PlayerFireState extends State<Player> {
     const proj = new Projectile(pos, 180, p.directionVector, 500, ProjectileType.PLAYER)
     p.projectileArray.push(proj)
     p.isActiveProjecetile = p.isProjectileAttacking = true
+    zzfx(...fireballSFX)
   }
 
   exit(): void { this.gameObject.isFiring = false }

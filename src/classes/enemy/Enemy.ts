@@ -8,8 +8,6 @@ import { time } from "@/core/time";
 import { Projectile } from "../Projectile";
 import { ParticleSystem } from "@/core/particle-system";
 
-const BULLET_X = -8, BULLET_Y = -5;
-
 export class Enemy extends GameObject {
   static isEmenyCollided = false;
   isAlive = false;
@@ -71,7 +69,7 @@ export class Enemy extends GameObject {
   shootToPlayer() {
     const dir = Vector2.subtract(this.player.position, this.position).normalize();
     this.projectileArray.push(new Projectile(
-      new Vector2(this.position.x + this.width/2 + BULLET_X, this.position.y + this.height/2 + BULLET_Y),
+      new Vector2(this.position.x + this.width/2, this.position.y + this.height/2),
       50, dir, 2000, ProjectileType.ENEMY
     ));
     this.isActiveProjectile = this.isProjectileAttacking = true;
@@ -94,12 +92,13 @@ export class Enemy extends GameObject {
     }
   }
 
-  followPlayer() {
+  followPlayer(isByBoss?: boolean) {
     const collided = Engine.collisions(this.player.hitBox, this.enemyAreaBox);
     if(collided && this.player.hitBox.active){
       const off = 8, dx = this.player.position.x - this.position.x, dy = this.player.position.y + off - this.position.y;
       this.isFollowingPlayer = true;
       const dist = Math.hypot(dx, dy);
+      if (isByBoss) this.isHozFlip = dx > 0;
       this.isHozFlip = dx < 0;
       this.velocity.x = dx/dist * this.runSpeed * time.deltaSeconds;
       this.velocity.y = dy/dist * this.runSpeed * time.deltaSeconds;

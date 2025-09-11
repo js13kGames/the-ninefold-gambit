@@ -34,7 +34,7 @@ export class DialogSystem {
 
     ctx.font = '10px monospace'
     ctx.fillStyle = 'lightgray'
-    ctx.fillText('Press Space or X to continue...', this.x + pad, this.y + this.h - 20)
+    ctx.fillText('Press [Space] or (A) to continue...', this.x + pad, this.y + this.h - 20)
   }
 
   private wrap(ctx: CanvasRenderingContext2D, t: string, x: number, y: number, mw: number, lh: number) {
